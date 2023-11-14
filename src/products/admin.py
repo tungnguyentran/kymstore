@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, RentingPrice, ProductImage
+from .models import Product, RentingPrice, ProductImage, Brand
 
 
 # Register your models here.
@@ -20,6 +20,10 @@ class ProductAdmin(admin.ModelAdmin):
     ]
 
 
+class BrandAdmin(admin.ModelAdmin):
+    model = Brand
+
+
 admin.site.register(Product, ProductAdmin)
-# admin.site.register(RentingPrice)
+admin.site.register(Brand, BrandAdmin)
 

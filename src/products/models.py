@@ -3,9 +3,10 @@ from django.conf import settings
 
 
 # Create your models here.
-class Brands(models.Model):
+class Brand(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(settings.MEDIA_ROOT)
+    description = models.CharField(max_length=255, null=True)
+    image = models.ImageField(upload_to="brand/%Y/%m/%d", null=True)
 
 
 class Product(models.Model):
@@ -45,17 +46,20 @@ class Product(models.Model):
         (2, STATUS_WASHING)
     )
 
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
     product_id = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, null=True)
     size = models.CharField(max_length=20, choices=SIZE_CHOICES, default=SIZE_XS)
     color = models.CharField(max_length=100, default=DEFAULT_COLOR)
-    condition = models.CharField(max_length=20, default=CONDITION_NEW_TAG)
+    condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default=CONDITION_NEW_TAG)
     original_price = models.IntegerField(default=0)
     bought_price = models.IntegerField(default=0)
-    status = models.SmallIntegerField(default=STATUS_CHOICES[0][0])
+    status = models.SmallIntegerField(default=STATUS_CHOICES[0][0], choices=STATUS_CHOICES)
     bought_date_time = models.DateTimeField(null=True)
     sell_price = models.IntegerField(default=0)
+    created = models.DateTimeField(auto_now=True, auto_created=True)
+    modified = models.DateTimeField(auto_now=True)
 
 
 class RentingPrice(models.Model):

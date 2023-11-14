@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'Kymstore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("MYSQL_DATABASE"),
-        'USER': os.environ.get("MYSQL_USER"),
-        'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
-        'HOST': 'db',  # docker-compose service name 'db' resolves to host name 'db'
-        'PORT': 3306
+        'NAME': 'kymstore',
+        'USER': 'root',
+        'PASSWORD': '123457',
+        'HOST': '127.0.0.1',  # docker-compose service name 'db' resolves to host name 'db'
+        'PORT': '3306'
     }
 }
 
@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bangkok'
 
 USE_I18N = True
 
