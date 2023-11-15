@@ -23,6 +23,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 class BrandAdmin(admin.ModelAdmin):
     model = Brand
+    list_display = ['name', 'description', 'image', 'count_product']
+
+    def count_product(self, obj):
+        return obj.product_set.count()
 
 
 admin.site.register(Product, ProductAdmin)
