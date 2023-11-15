@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.safestring import mark_safe
 
 
 # Create your models here.
@@ -8,10 +9,13 @@ class Brand(models.Model):
     description = models.CharField(max_length=255, null=True)
     image = models.ImageField(upload_to="brand/%Y/%m/%d", null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     SIZE_XS = "XS"
-    SIZE_S = "X"
+    SIZE_S = "S"
     SIZE_M = "M"
     SIZE_L = "L"
     SIZE_XL = "XL"
@@ -61,6 +65,9 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now=True, auto_created=True)
     modified = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "({}) - {}".format(self.product_id, self.name)
+
 
 class RentingPrice(models.Model):
     ONE_DAY = "1 Ngày"
@@ -79,3 +86,4 @@ class RentingPrice(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product/%Y/%m/%d')
+

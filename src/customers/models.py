@@ -14,3 +14,6 @@ class Customer(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=20)
     facebook = models.CharField(max_length=100, null=True, validators=[url_regex])
     address = models.CharField(max_length=150, null=True)
+
+    def __str__(self):
+        return self.name

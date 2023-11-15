@@ -14,6 +14,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
+    list_display = ['product_id', 'name', 'brand', 'sell_price', 'created', 'modified']
     inlines = [
         RentingPriceInline,
         ProductImageInline
