@@ -15,8 +15,14 @@ class Order(models.Model):
         (3, 'Đã giao'),
         (4, 'Đã hủy'),
     )
+
+    ORDER_TYPES = (
+        (0, 'Thuê'),
+        (1, 'Mua'),
+    )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    status = models.SmallIntegerField(default=0, choices=ORDER_STATUSES)
+    status = models.SmallIntegerField(default=ORDER_STATUSES[0][0], choices=ORDER_STATUSES)
+    type = models.SmallIntegerField(default=ORDER_TYPES[0][0], choices=ORDER_TYPES)
     created = models.DateTimeField(auto_now=True, auto_created=True)
     modified = models.DateTimeField(auto_now=True)
 
