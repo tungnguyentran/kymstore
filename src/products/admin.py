@@ -29,6 +29,8 @@ class ProductAdmin(admin.ModelAdmin):
                 renting_price.type_of_renting, renting_price.price)
         return mark_safe(renting_prices_html)
 
+    get_renting_prices.short_description = "Renting prices"
+
 
 class BrandAdmin(admin.ModelAdmin):
     model = Brand
