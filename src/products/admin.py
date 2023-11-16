@@ -25,7 +25,8 @@ class ProductAdmin(admin.ModelAdmin):
         renting_prices = obj.rentingprice_set.all()
         renting_prices_html = ''
         for renting_price in renting_prices:
-            renting_prices_html += '<p><strong>{}</strong>: {:20,} VND</p>'.format(renting_price.type_of_renting, renting_price.price)
+            renting_prices_html += '<p><strong>{}</strong>: {:20,} VND</p>'.format(
+                renting_price.type_of_renting, renting_price.price)
         return mark_safe(renting_prices_html)
 
 
